@@ -4,4 +4,6 @@ export class CreateCardDto {
   transcription: string;
 
   translation: string;
+
+  typeId: number;
 }

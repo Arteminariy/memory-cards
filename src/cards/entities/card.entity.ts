@@ -1,4 +1,12 @@
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import {
+  BelongsTo,
+  Column,
+  DataType,
+  ForeignKey,
+  Model,
+  Table,
+} from 'sequelize-typescript';
+import { Type } from 'src/types/entities/type.entity';
 
 @Table({ tableName: 'cards' })
 export class Card extends Model<Card> {
@@ -25,8 +33,12 @@ export class Card extends Model<Card> {
   })
   translation: string;
 
+  @ForeignKey(() => Type)
   @Column({
-    type: DataType.STRING,
+    type: DataType.INTEGER,
   })
-  type: string;
+  typeId: number;
+
+  @BelongsTo(() => Type)
+  type: Type;
 }

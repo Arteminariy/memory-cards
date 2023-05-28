@@ -3,6 +3,8 @@ import { CardsModule } from './cards/cards.module';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Card } from './cards/entities/card.entity';
+import { TypesModule } from './types/types.module';
+import { Type } from './types/entities/type.entity';
 
 @Module({
   imports: [
@@ -17,11 +19,13 @@ import { Card } from './cards/entities/card.entity';
       username: process.env.POSTGRES_USER,
       password: String(process.env.POSTGRES_PASSWORD),
       database: process.env.POSTGRES_DB,
-      models: [Card],
+      models: [Card, Type],
       autoLoadModels: true,
       synchronize: true,
     }),
     Card,
+    Type,
+    TypesModule,
   ],
   controllers: [],
   providers: [],
